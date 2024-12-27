@@ -95,8 +95,7 @@ const Playground = () => {
       params: { base64_encoded: 'true', fields: '*' },
       headers: {
         'content-type': 'application/json',
-        'Content-Type': 'application/json',
-        'X-RapidAPI-Key': 'b4e5c5a05fmsh9adf6ec091523f8p165338jsncc58f31c26e1',
+        'X-RapidAPI-Key': 'ede5b21b92msh4234609dc6f8473p14ef94jsneab6d440893d',
         'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
       },
       data: JSON.stringify({
@@ -105,9 +104,14 @@ const Playground = () => {
         stdin: stdin
       })
     };
-
-    const res = await axios.request(options);
-    return res.data.token
+    try{
+      const res = await axios.request(options);
+      return res.data.token
+    }
+    catch(error){
+        console.log(error)
+    }
+    
   }
 
   const getOutput = async (token) => {
