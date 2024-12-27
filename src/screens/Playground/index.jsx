@@ -117,7 +117,7 @@ const Playground = () => {
       url: "https://judge0-ce.p.rapidapi.com/submissions/" + token,
       params: { base64_encoded: 'true', fields: '*' },
       headers: {
-        'X-RapidAPI-Key': '3ed7a75b44mshc9e28568fe0317bp17b5b2jsn6d89943165d8',
+        'X-RapidAPI-Key': 'ede5b21b92msh4234609dc6f8473p14ef94jsneab6d440893d',
         'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
       }
     };
