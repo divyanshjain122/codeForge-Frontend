@@ -127,20 +127,25 @@ const Playground = () => {
     };
 
     
-    // call the api
-    // const res = await axios.request(options);
-    // if (res.data.status_id <= 2) {
-    //   const res2 = await getOutput(token);
-    //   return res2.data;
-    // }
-
     try {
-    	const res = await axios.request(options);
-    	return res.data;
-    } catch (error) {
-    	console.error(error);
-      return error;
+    // Polling with retry logic
+    while (true) {
+      const res = await axios.request(options);
+
+      const statusId = res.data.status?.id; // Extract the status ID
+      if (statusId > 2) {
+        // Status > 2 means the result is ready
+        return res.data;
+      }
+
+      console.log('Still processing... Retrying in 1 second.');
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second before retrying
     }
+  } catch (error) {
+    console.error('Error in getOutput:', error.response?.data || error.message);
+    throw error;
+  }
+
     
   }
 
