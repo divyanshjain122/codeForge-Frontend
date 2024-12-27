@@ -126,13 +126,22 @@ const Playground = () => {
       }
     };
 
+    
     // call the api
-    const res = await axios.request(options);
-    if (res.data.status_id <= 2) {
-      const res2 = await getOutput(token);
-      return res2.data;
+    // const res = await axios.request(options);
+    // if (res.data.status_id <= 2) {
+    //   const res2 = await getOutput(token);
+    //   return res2.data;
+    // }
+
+    try {
+    	const res = await axios.request(options);
+    	return res.data;
+    } catch (error) {
+    	console.error(error);
+      return error;
     }
-    return res.data;
+    
   }
 
   const runCode = async () => {
